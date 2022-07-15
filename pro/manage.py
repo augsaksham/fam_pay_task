@@ -2,6 +2,16 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from make_request import mn
+from threading import Thread
+ex=0
+ 
+# task that runs at a fixed interval
+def background_task(interval_sec):
+    # run forever
+    while True:
+        # block for the interval
+        mn()
 
 
 def main():
@@ -19,4 +29,10 @@ def main():
 
 
 if __name__ == '__main__':
+    if (ex==0):
+        print('Starting background task...')
+        daemon = Thread(target=background_task, args=(3,), daemon=True, name='Background')
+        daemon.start()
+        ex+=1
+    print("Staring Server")
     main()

@@ -2,10 +2,10 @@ import firebase_admin
 from firebase_admin import db
 from firebase_admin import credentials
 databaseURL='https://youtubesearch-356406-default-rtdb.firebaseio.com/'
-cred = credentials.Certificate("youtube\\Utils\\youtubesearch-356406-firebase-adminsdk-i3koy-976a3ded84.json")
-default_app = firebase_admin.initialize_app(cred, {
-	'databaseURL':databaseURL
-	})
+cred = credentials.Certificate("youtube/Utils/youtubesearch-356406-firebase-adminsdk-i3koy-976a3ded84.json")
+# default_app = firebase_admin.initialize_app(cred, {
+# 	'databaseURL':databaseURL
+# 	})
 ref = db.reference("/")
 
 def write(dict_val):

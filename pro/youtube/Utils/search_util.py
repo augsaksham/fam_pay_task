@@ -1,6 +1,7 @@
 import youtube.Utils.cloud_util as cloud
 from functools import cmp_to_key
 def search_query(query):
+    query=query.lower()
     entries=cloud.get_data()
     entries=dict(entries)
     dict_res={'id':'null','object':{},'matches':0}
@@ -8,6 +9,7 @@ def search_query(query):
     for key in entries.keys():
         cnt=0
         title=entries[key]['title']
+        title=title.lower()
         for word in words:
             if(word in title):
                 cnt+=1

@@ -2,5 +2,6 @@ Django
 google-api-core
 google-api-python-client
 requests
+isodate
 firebase-admin
 django-debug-toolbar
