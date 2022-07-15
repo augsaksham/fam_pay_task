@@ -1,0 +1,6 @@
+Django
+google-api-core
+google-api-python-client
+requests
+firebase-admin
+django-debug-toolbar

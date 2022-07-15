@@ -9,7 +9,7 @@ from youtube.Utils.cloud_util import write
 from youtube.Utils.search_util import search_query,sort_entires
 
 # Create your views here.
-def request_video(request):
+def request_video():
     search_url='https://www.googleapis.com/youtube/v3/search'
     video_url='https://www.googleapis.com/youtube/v3/videos'
     search_params={
