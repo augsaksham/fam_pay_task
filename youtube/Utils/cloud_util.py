@@ -18,4 +18,4 @@ def write(dict_val):
 def get_data():
     ref = db.reference("/")
     res=ref.child('video').get()
-    print("Data = ",res)
+    return res

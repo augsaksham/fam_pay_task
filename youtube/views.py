@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import requests
 import json
+from django.http import JsonResponse
 from isodate import parse_duration
 from django.conf import settings
-from youtube.Utils.upload_to_cloud import write,get_data
+from youtube.Utils.cloud_util import write
+from youtube.Utils.search_util import search_query,sort_entires
 
 # Create your views here.
 def request_video(request):
@@ -34,6 +36,7 @@ def request_video(request):
     dict_res={}
     for res in result:
         dict_vd={}
+        print(res)
         dict_vd['id']=res['id']
         dict_vd['title']=res['snippet']['title']
         dict_vd['duration']=(parse_duration(res['contentDetails']['duration']).total_seconds())/60
@@ -43,17 +46,22 @@ def request_video(request):
         dict_vd['description']=res['snippet']['description']
         dict_res[res['id']]=dict_vd
     write(dict_res)
-    print("retieved data ")
-    get_data()
-    
     return HttpResponse('Requested')
 
 
 def search(request):
+
     data = json.loads(request.body.decode("utf-8"))
     q_name = data.get('query')
+    result=search_query(q_name)
+    res=result['object']
+    res['Key_Word_Match']=result['matches']
+    return JsonResponse(res, status=201)
 
-    print("got query as ",q_name)
 
-    return HttpResponse("Succss")
+def sort_query(request):
+
+    result=sort_entires()
+    res=result
+    return JsonResponse(res, status=201)
     
