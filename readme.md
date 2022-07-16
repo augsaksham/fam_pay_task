@@ -54,6 +54,8 @@ To make an API to fetch latest videos sorted in reverse chronological order of t
 
     Install docker windows client form : https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
     
+    * git clone https://github.com/augsaksham/fam_pay_task
+    * cd fam_pay_task
     * docker build . -t dev
     * docker run -p 8001:8000 -it --rm dev 
 
