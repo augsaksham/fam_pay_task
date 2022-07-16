@@ -23,7 +23,7 @@ def write(dict_val):
 query_search='football'
 data_api_key1='AIzaSyDJEndrDUdTtJ30w5wBP9pKPBZSaJyJuVM'
 data_api_key2='AIzaSyDyR6yGuSudIu5d_49lIHIt7hEmY7My3H4'
-num_query=1
+num_query=5
 
 def request_util(api_key):
     search_url='https://www.googleapis.com/youtube/v3/search'
@@ -65,12 +65,13 @@ def request_util(api_key):
     print("Requested for data")
 
 def request_video():
+    api_key_list=[data_api_key1,data_api_key2]
     try:
-        request_util(data_api_key1)
+        request_util(api_key_list[0])
     except:
         print("Youtube API1 Error ..... Trying API2......")
         try:
-            request_util(data_api_key2)
+            request_util(api_key_list[1])
         except:
             print("Youtube API2 Error")
 

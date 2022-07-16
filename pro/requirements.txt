@@ -3,5 +3,6 @@ google-api-core
 google-api-python-client
 requests
 isodate
+docker
 firebase-admin
 django-debug-toolbar

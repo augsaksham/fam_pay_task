@@ -7,6 +7,7 @@ from isodate import parse_duration
 from django.conf import settings
 from youtube.Utils.cloud_util import write
 from youtube.Utils.search_util import search_query,sort_entires
+from django.core.paginator import Paginator
 
 # Create your views here.
 def request_video():
@@ -48,20 +49,37 @@ def request_video():
     write(dict_res)
     return HttpResponse('Requested')
 
+def parse_json(dict_res):
+    list_res=[]
+    for key in dict_res.keys():
+        list_res.append(dict_res[key])
+    return list_res
 
 def search(request):
 
     data = json.loads(request.body.decode("utf-8"))
     q_name = data.get('query')
-    result=search_query(q_name)
+    match_description=0
+    try:
+        match_description = data.get('match_description',0)
+    except:
+        pass
+    result=search_query(q_name,match_description)
     res=result['object']
     res['Key_Word_Match']=result['matches']
     return JsonResponse(res, status=201)
 
 
 def sort_query(request):
-
+    data = json.loads(request.body.decode("utf-8"))
+    page_num = data.get('page',1)
     result=sort_entires()
     res=result
-    return JsonResponse(res, status=201)
+    ls=parse_json(res)
+    ln_list=len(ls)
+    if(page_num>ln_list):
+        return HttpResponse(f"Number of page {page_num} is greater than total entries {ln_list}")
+    p = Paginator(ls,1,allow_empty_first_page=False)
+    page = p.page(page_num)
+    return HttpResponse(page)
     

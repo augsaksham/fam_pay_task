@@ -1,6 +1,6 @@
 import youtube.Utils.cloud_util as cloud
 from functools import cmp_to_key
-def search_query(query):
+def search_query(query,match_description):
     query=query.lower()
     entries=cloud.get_data()
     entries=dict(entries)
@@ -13,6 +13,12 @@ def search_query(query):
         for word in words:
             if(word in title):
                 cnt+=1
+        if(match_description==1):
+            description=entries[key]['description']
+            description=description.lower()
+            for word in words:
+                if(word in description):
+                    cnt+=1
         if(dict_res['matches']<cnt):
             dict_res['id']=key
             dict_res['matches']=cnt
