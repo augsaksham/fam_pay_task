@@ -61,5 +61,16 @@ To make an API to fetch latest videos sorted in reverse chronological order of t
 
 
 
-Please look at sample request for API usage reference
+# Sample Usage:
+ 
+  1. sort/
+  
+  ![Screenshot (434)](https://user-images.githubusercontent.com/79015249/179352041-e16be298-7512-4e8c-9e23-11815ed1752d.png)
+   
+   2. search/ 
+   
+   ![Screenshot (435)](https://user-images.githubusercontent.com/79015249/179352048-1107716f-bf91-40be-92d5-4ac5d34de9d1.png)
+
+
+    
 
